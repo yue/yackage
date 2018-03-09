@@ -1,7 +1,14 @@
 {
   "name": "yackage",
   "version": "0.1.0",
+  "main": "./lib/main.js",
   "description": "Build native desktop apps with Node.js",
+  "bin": {
+    "yackage": "./bin/yackage.js"
+  },
+  "engines": {
+    "node": ">=8"
+  },
   "repository": {
     "type": "git",
     "url": "https://github.com/yue/yackage.git"
@@ -10,6 +17,7 @@
   "dependencies": {
     "asar": "0.14.x",
     "axios": "0.18.0",
+    "commander": "2.15.0",
     "extract-zip": "1.6.6",
     "fs-extra": "5.0.0",
     "uglify-es": "3.3.10",
