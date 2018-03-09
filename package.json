@@ -12,6 +12,7 @@
     "axios": "0.18.0",
     "extract-zip": "1.6.6",
     "fs-extra": "5.0.0",
+    "uglify-es": "3.3.10",
     "yazl": "2.4.3"
   }
 }
