@@ -13,10 +13,11 @@ const opts = {
   options: {},
 }
 
-function action(outputPath, appDir) {
+async function action(outputPath, appDir) {
   Object.assign(opts, program)
-  packageApp(outputPath, appDir, opts.options,
-             opts.yodeVersion, opts.yodePlatform, opts.yodeArch, opts.cacheDir)
+  console.log(await packageApp(
+    outputPath, appDir, opts.options,
+    opts.yodeVersion, opts.yodePlatform, opts.yodeArch, opts.cacheDir))
 }
 
 program.version('v' + require('../package.json').version)
