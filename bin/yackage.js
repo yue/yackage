@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 const os = require('os')
+const path = require('path')
 const program = require('commander')
 
 const {packageApp} = require('..')
@@ -17,7 +18,8 @@ async function action(outputDir, appDir) {
   Object.assign(opts, program)
   console.log(await packageApp(
     outputDir, appDir, opts.options,
-    opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir))
+    opts.yodeVersion, opts.platform, opts.arch,
+    path.resolve(opts.cacheDir)))
 }
 
 program.version('v' + require('../package.json').version)
@@ -25,7 +27,7 @@ program.version('v' + require('../package.json').version)
        .option('--platform <platform>', 'Target platform')
        .option('--arch <arch>', 'Target arch')
        .option('--yode-version <version>', 'Yode version')
-       .option('--cacheDir', 'Directory to store downloaded binaries')
+       .option('--cache-dir <dir>', 'Directory to store downloaded binaries')
        .arguments('<outputDir> <appDir>')
        .action(action)
        .parse(process.argv)
