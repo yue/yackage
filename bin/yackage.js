@@ -13,10 +13,10 @@ const opts = {
   options: {},
 }
 
-async function action(outputPath, appDir) {
+async function action(outputDir, appDir) {
   Object.assign(opts, program)
   console.log(await packageApp(
-    outputPath, appDir, opts.options,
+    outputDir, appDir, opts.options,
     opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir))
 }
 
@@ -26,7 +26,7 @@ program.version('v' + require('../package.json').version)
        .option('--arch <arch>', 'Target arch')
        .option('--yode-version <version>', 'Yode version')
        .option('--cacheDir', 'Directory to store downloaded binaries')
-       .arguments('<outputPath> <appDir>')
+       .arguments('<outputDir> <appDir>')
        .action(action)
        .parse(process.argv)
 
