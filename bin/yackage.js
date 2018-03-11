@@ -5,7 +5,8 @@ const path = require('path')
 const fs = require('fs-extra')
 const program = require('commander')
 
-const {getLatestYodeVersion, packageApp} = require('..')
+const {spawn} = require('child_process')
+const {downloadYode, getLatestYodeVersion, packageApp} = require('..')
 
 async function parseOpts() {
   const opts = {
@@ -31,9 +32,25 @@ async function parseOpts() {
 
 async function build(outputDir) {
   const opts = await parseOpts()
-  console.log(await packageApp(
+  await packageApp(
     outputDir, opts.appDir, opts.options,
-    opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir))
+    opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir)
+}
+
+async function install() {
+  const opts = await parseOpts()
+  await downloadYode(opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir)
+}
+
+async function start() {
+  const opts = await parseOpts()
+  const yode = path.resolve(
+    opts.cacheDir,
+    `yode-${opts.yodeVersion}-${opts.platform}-${opts.arch}`,
+    process.platform == 'win32' ? 'yode.exe' : 'yode')
+  const child = spawn(yode, [opts.appDir])
+  child.stdout.pipe(process.stdout)
+  child.stderr.pipe(process.stderr)
 }
 
 program.version('v' + require('../package.json').version)
@@ -47,6 +64,14 @@ program.version('v' + require('../package.json').version)
 program.command('build <outputDir>')
        .description('Build exetutable file from app')
        .action(build)
+
+program.command('install')
+       .description('Download Yode for current platform')
+       .action(install)
+
+program.command('start')
+       .description('Run app with Yode')
+       .action(start)
 
 program.command('*')
        .action((cmd) => {
