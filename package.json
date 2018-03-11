@@ -16,12 +16,10 @@
   "license": "Unlicense",
   "dependencies": {
     "asar": "0.14.x",
-    "axios": "0.18.0",
     "commander": "2.15.0",
-    "extract-zip": "1.6.6",
+    "download-yue": "2.x",
     "fs-extra": "5.0.0",
     "tar": "4.4.0",
-    "uglify-es": "3.3.10",
-    "yazl": "2.4.3"
+    "uglify-es": "3.3.10"
   }
 }
