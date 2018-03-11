@@ -7,7 +7,7 @@ const program = require('commander')
 const {packageApp} = require('..')
 
 const opts = {
-  yodeVersion: 'v0.2.0',
+  yodeVersion: 'v0.3.0',
   platform: process.platform,
   arch: process.arch,
   cacheDir: os.tmpdir(),
