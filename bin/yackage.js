@@ -2,24 +2,38 @@
 
 const os = require('os')
 const path = require('path')
+const fs = require('fs-extra')
 const program = require('commander')
 
-const {packageApp} = require('..')
+const {getLatestYodeVersion, packageApp} = require('..')
 
-const opts = {
-  yodeVersion: 'v0.3.0',
-  platform: process.platform,
-  arch: process.arch,
-  cacheDir: os.tmpdir(),
-  options: {},
+async function parseOpts() {
+  const opts = {
+    platform: process.platform,
+    arch: process.arch,
+    appDir: process.cwd(),
+    options: {},
+  }
+  Object.assign(opts, program)
+  if (!opts.cacheDir)
+    opts.cacheDir = path.join(opts.appDir, 'yode')
+  if (!opts.yodeVersion) {
+    const packageJson = await fs.readJson(path.join(opts.appDir, 'package.json'))
+    if (packageJson.engines && packageJson.engines.yode)
+      opts.yodeVersion = 'v' + packageJson.engines.yode
+    else
+      opts.yodeVersion = await getLatestYodeVersion()
+  }
+  opts.appDir = path.resolve(opts.appDir)
+  opts.cacheDir = path.resolve(opts.cacheDir)
+  return opts
 }
 
-async function action(outputDir, appDir) {
-  Object.assign(opts, program)
+async function build(outputDir) {
+  const opts = await parseOpts()
   console.log(await packageApp(
-    outputDir, appDir, opts.options,
-    opts.yodeVersion, opts.platform, opts.arch,
-    path.resolve(opts.cacheDir)))
+    outputDir, opts.appDir, opts.options,
+    opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir))
 }
 
 program.version('v' + require('../package.json').version)
@@ -27,10 +41,19 @@ program.version('v' + require('../package.json').version)
        .option('--platform <platform>', 'Target platform')
        .option('--arch <arch>', 'Target arch')
        .option('--yode-version <version>', 'Yode version')
+       .option('--app-dir <dir>', 'Path to the app')
        .option('--cache-dir <dir>', 'Directory to store downloaded binaries')
-       .arguments('<outputDir> <appDir>')
-       .action(action)
-       .parse(process.argv)
+
+program.command('build <outputDir>')
+       .description('Build exetutable file from app')
+       .action(build)
+
+program.command('*')
+       .action((cmd) => {
+         console.error(`yackage: ${cmd} is not a command.`)
+       })
+
+program.parse(process.argv)
 
 if (process.argv.length == 2)
   program.outputHelp()
