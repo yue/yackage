@@ -13,7 +13,9 @@ async function parseOpts() {
     platform: process.platform,
     arch: process.arch,
     appDir: process.cwd(),
-    options: {},
+    options: {
+      unpack: '*.node',
+    },
   }
   Object.assign(opts, program)
   if (!opts.cacheDir)
@@ -24,6 +26,10 @@ async function parseOpts() {
       opts.yodeVersion = 'v' + packageJson.engines.yode
     else
       opts.yodeVersion = await getLatestYodeVersion()
+  }
+  if (opts.unpack) {
+    opts.options.unpack = opts.unpack
+    delete opts.unpack
   }
   opts.appDir = path.resolve(opts.appDir)
   opts.cacheDir = path.resolve(opts.cacheDir)
@@ -60,6 +66,7 @@ program.version('v' + require('../package.json').version)
        .option('--yode-version <version>', 'Yode version')
        .option('--app-dir <dir>', 'Path to the app')
        .option('--cache-dir <dir>', 'Directory to store downloaded binaries')
+       .option('--unpack <pattern>', 'Passed to asar utility')
 
 program.command('build <outputDir>')
        .description('Build exetutable file from app')
