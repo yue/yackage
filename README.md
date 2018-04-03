@@ -66,6 +66,16 @@ yackage install
 yackage start
 ```
 
+## Configuration
+
+Currently a very limited subset of [electron-builder][electron-builder]
+configuration is supported.
+
+The `electron-builder` is a great tool for packaging apps, but it is also very
+specific for Electron. I wish to be able to reuse the project to package Yode
+apps, or add Yode support to `electron-builder` directly, but I'm not really
+familiar with its source code to do that.
+
 ## How yackage works
 
 1. Run `npm pack` to generate tarball for the app.
@@ -95,3 +105,4 @@ Public domain.
 
 [yue]: https://github.com/yue/yue
 [yode]: https://github.com/yue/yode
+[electron-builder]: https://www.electron.build/configuration/configuration
