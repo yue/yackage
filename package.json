@@ -21,6 +21,7 @@
     "download-yue": "2.x",
     "fs-extra": "5.0.0",
     "glob": "7.1.2",
+    "license-checker": "18.0.0",
     "rcedit": "1.0.0",
     "tar": "4.4.0",
     "uglify-es": "3.3.10",
