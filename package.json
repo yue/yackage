@@ -20,6 +20,7 @@
     "commander": "2.15.0",
     "download-yue": "2.x",
     "fs-extra": "5.0.0",
+    "rcedit": "1.0.0",
     "tar": "4.4.0",
     "uglify-es": "3.3.10"
   }
