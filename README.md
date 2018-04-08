@@ -27,6 +27,7 @@ Options:
 Commands:
 
   build <outputDir>         Build exetutable file from app
+  dist <outputDir>          Build and create distribution
   install                   Download Yode for current platform
   start                     Run app with Yode
 ```
@@ -50,13 +51,19 @@ ls out
 Generate executable from path under arbitrary path:
 
 ```
-yackage --app-dir /path/to/app build out
+yackage build out --app-dir /path/to/app
 ```
 
 Generate executable for arbitrary platform:
 
 ```
-yackage --platform win32 --arch ia32 build out
+yackage build out --platform win32 --arch ia32
+```
+
+Generate distributions:
+
+```
+yackage dist out --app-dir /path/to/app
 ```
 
 Download Yode and start your app with it:
