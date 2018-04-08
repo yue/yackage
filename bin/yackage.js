@@ -6,7 +6,8 @@ const fs = require('fs-extra')
 const program = require('commander')
 
 const {spawn} = require('child_process')
-const {downloadYode, getLatestYodeVersion, packageApp} = require('..')
+const {downloadYode, getLatestYodeVersion, packageApp} = require('../lib/main')
+const {createZip} = require('../lib/dist')
 
 async function parseOpts() {
   const opts = {
@@ -43,6 +44,14 @@ async function build(outputDir) {
     opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir)
 }
 
+async function dist(outputDir) {
+  const opts = await parseOpts()
+  const target = await packageApp(
+    outputDir, opts.appDir, opts.options,
+    opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir)
+  await createZip(opts.appDir, opts.platform, opts.arch, target)
+}
+
 async function install() {
   const opts = await parseOpts()
   await downloadYode(opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir)
@@ -71,6 +80,10 @@ program.version('v' + require('../package.json').version)
 program.command('build <outputDir>')
        .description('Build exetutable file from app')
        .action(build)
+
+program.command('dist <outputDir>')
+       .description('Build and generate distribution')
+       .action(dist)
 
 program.command('install')
        .description('Download Yode for current platform')
