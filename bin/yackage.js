@@ -26,7 +26,7 @@ async function parseOpts() {
     if (packageJson.engines && packageJson.engines.yode)
       opts.yodeVersion = 'v' + packageJson.engines.yode
     else
-      opts.yodeVersion = await getLatestYodeVersion()
+      opts.yodeVersion = await getLatestYodeVersion(opts.cacheDir)
   }
   if (opts.unpack) {
     opts.options.unpack = opts.unpack
