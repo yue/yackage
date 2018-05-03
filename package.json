@@ -24,7 +24,7 @@
     "license-checker": "18.0.0",
     "rcedit": "1.0.0",
     "tar": "4.4.0",
-    "uglify-es": "3.3.10",
+    "uglify-es": "3.3.9",
     "yazl": "2.4.3"
   }
 }
