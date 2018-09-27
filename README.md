@@ -26,7 +26,7 @@ Options:
 
 Commands:
 
-  build <outputDir>         Build exetutable file from app
+  build <outputDir>         Build executable file from app
   dist <outputDir>          Build and create distribution
   install                   Download Yode for current platform
   start                     Run app with Yode
@@ -87,7 +87,7 @@ familiar with its source code to do that.
 
 1. Run `npm pack` to generate tarball for the app.
 2. Extract the tarball to temporary directory and run `npm install`.
-3. Use `asar` to pacakge the app and its dependencies.
+3. Use `asar` to package the app and its dependencies.
 4. Append the generated ASAR archive to Yode.
 5. Yode would automatically recognize the ASAR archive appended in the
    executable and start with it.
