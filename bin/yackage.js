@@ -63,7 +63,8 @@ async function start() {
     opts.cacheDir,
     `yode-${opts.yodeVersion}-${opts.platform}-${opts.arch}`,
     process.platform == 'win32' ? 'yode.exe' : 'yode')
-  const child = spawn(yode, [opts.appDir])
+  const args = [opts.appDir].concat(program.args.slice(0, program.args.length - 1));
+  const child = spawn(yode, args);
   child.stdout.pipe(process.stdout)
   child.stderr.pipe(process.stderr)
 }
