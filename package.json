@@ -16,14 +16,14 @@
   "license": "Unlicense",
   "dependencies": {
     "asar": "1.0.x",
-    "axios": "0.18.0",
+    "axios": "0.19.2",
     "commander": "2.15.0",
     "download-yue": "2.x",
     "fs-extra": "5.0.0",
     "glob": "7.1.2",
-    "license-checker": "24.1.0",
+    "license-checker": "25.0.1",
     "rcedit": "1.0.0",
-    "tar": "4.4.0",
+    "tar": "6.0.1",
     "uglify-es": "3.3.9",
     "yazl": "2.4.3"
   }
