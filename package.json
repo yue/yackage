@@ -15,7 +15,7 @@
   },
   "license": "Unlicense",
   "dependencies": {
-    "asar": "1.0.x",
+    "asar": "3.0.x",
     "axios": "0.19.2",
     "commander": "2.15.0",
     "download-yue": "2.x",

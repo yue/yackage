@@ -6,13 +6,16 @@ const fs = require('fs-extra')
 const program = require('commander')
 
 const {spawn} = require('child_process')
-const {downloadYode, getLatestYodeVersion, packageApp} = require('../lib/main')
+const {packageApp} = require('../lib/main')
 const {createZip} = require('../lib/dist')
+const {getLatestYodeVersion} = require('../lib/util.js')
 
 async function parseOpts() {
   const opts = {
-    platform: process.platform,
-    arch: process.arch,
+    platform: process.env.npm_config_platform ? process.env.npm_config_platform
+                                              : process.platform,
+    arch: process.env.npm_config_arch ? process.env.npm_config_arch
+                                      : process.arch,
     appDir: process.cwd(),
     options: {
       unpack: '*.node',
@@ -52,11 +55,6 @@ async function dist(outputDir) {
   await createZip(opts.appDir, opts.platform, opts.arch, target)
 }
 
-async function install() {
-  const opts = await parseOpts()
-  await downloadYode(opts.yodeVersion, opts.platform, opts.arch, opts.cacheDir)
-}
-
 async function start() {
   const opts = await parseOpts()
   const yode = path.resolve(
@@ -84,10 +82,6 @@ program.command('build <outputDir>')
 program.command('dist <outputDir>')
        .description('Build and generate distribution')
        .action(dist)
-
-program.command('install')
-       .description('Download Yode for current platform')
-       .action(install)
 
 program.command('start')
        .description('Run app with Yode')

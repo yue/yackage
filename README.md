@@ -28,7 +28,6 @@ Commands:
 
   build <outputDir>         Build exetutable file from app
   dist <outputDir>          Build and create distribution
-  install                   Download Yode for current platform
   start                     Run app with Yode
 ```
 
@@ -39,8 +38,7 @@ pass `--cache-dir` to specify the place to sotre downloaded Yode binaries.
 
 ## Examples
 
-Generate executable from the app under current working directory (You should add
-`out/` to `.gitignore` to avoid including `out/` into the executable):
+Generate executable from the app under current working directory:
 
 ```sh
 cd /path/to/app/
@@ -66,22 +64,20 @@ Generate distributions:
 yackage dist out --app-dir /path/to/app
 ```
 
-Download Yode and start your app with it:
-
-```
-yackage install
-yackage start
-```
-
 ## Configuration
 
-Currently a very limited subset of [electron-builder][electron-builder]
-configuration is supported.
+Configure your project by adding following fields to `package.json`:
 
-The `electron-builder` is a great tool for packaging apps, but it is also very
-specific for Electron. I wish to be able to reuse the project to package Yode
-apps, or add Yode support to `electron-builder` directly, but I'm not really
-familiar with its source code to do that.
+```json
+{
+  "build": {
+    "appId": "com.app.id"
+    "productName": "App"
+    "copyright": "Copyright © 2020 Company",
+    "unpack": "+(*.node|*.html|*.png|*.gif)"
+  }
+}
+```
 
 ## How yackage works
 
