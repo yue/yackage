@@ -20,21 +20,16 @@ Options:
 
   --platform <platform>     Target platform
   --arch <arch>             Target arch
-  --yode-version <version>  Yode version
   --app-dir <dir>           Path to the app
-  --cache-dir <dir>         Directory to store downloaded binaries
 
 Commands:
 
   build <outputDir>         Build exetutable file from app
   dist <outputDir>          Build and create distribution
-  start                     Run app with Yode
 ```
 
-Note that by default yackage would download Yode binaries into the `yode/`
-directory under the app's directory, make sure `yode/` is added to `.gitignore`
-otherwise it would be included in the final executable. Or you can explicitly
-pass `--cache-dir` to specify the place to sotre downloaded Yode binaries.
+Note that before using Yackage, the target app must have [Yode][yode] listed
+as a dependency.
 
 ## Examples
 
@@ -43,7 +38,6 @@ Generate executable from the app under current working directory:
 ```sh
 cd /path/to/app/
 yackage build out
-ls out
 ```
 
 Generate executable from path under arbitrary path:
@@ -78,6 +72,9 @@ Configure your project by adding following fields to `package.json`:
   }
 }
 ```
+
+Icons should put under the `build/` directory with filenames of `icon.icns`
+and `icon.ico`.
 
 ## How yackage works
 
