@@ -69,7 +69,8 @@ Configure your project by adding following fields to `package.json`:
     "productName": "App"
     "copyright": "Copyright © 2020 Company",
     "minify": false,
-    "unpack": "+(*.node|*.html|*.png|*.gif)"
+    "unpack": "+(*.node|*.html|*.png|*.gif)",
+    "extraInfoPlist": "<key>LSUIElement</key><true/>"
   }
 }
 ```

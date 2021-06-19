@@ -19,6 +19,7 @@ async function parseOpts() {
     appDir: process.cwd(),
     minify: true,
     unpack: '*.node',
+    extraInfoPlist: '',
   }
   Object.assign(opts, program)
   if (!opts.cacheDir)
