@@ -17,17 +17,12 @@ async function parseOpts() {
     arch: process.env.npm_config_arch ? process.env.npm_config_arch
                                       : process.arch,
     appDir: process.cwd(),
-    options: {
-      unpack: '*.node',
-    },
+    minify: true,
+    unpack: '*.node',
   }
   Object.assign(opts, program)
   if (!opts.cacheDir)
     opts.cacheDir = path.join(opts.appDir, 'yode')
-  if (opts.unpack) {
-    opts.options.unpack = opts.unpack
-    delete opts.unpack
-  }
   opts.appDir = path.resolve(opts.appDir)
   return opts
 }
@@ -35,13 +30,13 @@ async function parseOpts() {
 async function build(outputDir) {
   const opts = await parseOpts()
   await packageApp(
-    outputDir, opts.appDir, opts.options, opts.platform, opts.arch)
+    outputDir, opts.appDir, opts, opts.platform, opts.arch)
 }
 
 async function dist(outputDir) {
   const opts = await parseOpts()
   const target = await packageApp(
-    outputDir, opts.appDir, opts.options, opts.platform, opts.arch)
+    outputDir, opts.appDir, opts, opts.platform, opts.arch)
   await createZip(opts.appDir, opts.platform, opts.arch, target)
 }
 

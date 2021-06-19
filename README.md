@@ -68,6 +68,7 @@ Configure your project by adding following fields to `package.json`:
     "appId": "com.app.id"
     "productName": "App"
     "copyright": "Copyright © 2020 Company",
+    "minify": false,
     "unpack": "+(*.node|*.html|*.png|*.gif)"
   }
 }
