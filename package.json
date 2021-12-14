@@ -16,13 +16,14 @@
   "license": "Unlicense",
   "dependencies": {
     "asar": "3.0.x",
+    "await-spawn": "4.0.2",
     "commander": "2.15.0",
     "fs-extra": "5.0.0",
     "glob": "7.1.2",
     "license-checker": "25.0.1",
     "rcedit": "1.0.0",
     "tar": "6.0.1",
-    "uglify-es": "3.3.9",
+    "uglify-js": "3.14.5",
     "yazl": "2.4.3"
   }
 }
