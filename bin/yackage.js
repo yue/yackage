@@ -1,12 +1,10 @@
 #!/usr/bin/env node
 
-const os = require('os')
 const path = require('path')
-const fs = require('fs-extra')
 const program = require('commander')
 
 const {spawn} = require('child_process')
-const {packageApp} = require('../lib/main')
+const {packageApp, packageCleanApp} = require('../lib/main')
 const {createZip} = require('../lib/dist')
 const {getLatestYodeVersion} = require('../lib/util.js')
 
@@ -26,15 +24,19 @@ async function parseOpts() {
 
 async function build(outputDir) {
   const opts = await parseOpts()
-  await packageApp(
-    outputDir, opts.appDir, opts, opts.platform, opts.arch)
+  await packageCleanApp(outputDir, opts.appDir, opts, opts.platform, opts.arch)
 }
 
 async function dist(outputDir) {
   const opts = await parseOpts()
-  const target = await packageApp(
+  const target = await packageCleanApp(
     outputDir, opts.appDir, opts, opts.platform, opts.arch)
   await createZip(opts.appDir, opts.platform, opts.arch, target)
+}
+
+async function dirtyBuild(outputDir) {
+  const opts = await parseOpts()
+  await packageApp(outputDir, opts.appDir, opts, opts.platform, opts.arch)
 }
 
 program.version('v' + require('../package.json').version)
@@ -57,8 +59,12 @@ program.command('build <outputDir>')
        .action(build)
 
 program.command('dist <outputDir>')
-       .description('Build app bundle and generate app distribution')
+       .description('Generate app distribution')
        .action(dist)
+
+program.command('dirty-build <outputDir>')
+       .description('Build app bundle without reinstalling modules')
+       .action(dirtyBuild)
 
 program.parse(process.argv)
 

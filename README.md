@@ -32,6 +32,7 @@ Commands:
 
   build <outputDir>      Build app bundle
   dist <outputDir>       Build app bundle and generate app distribution
+  dirty-build <outputDir>  Build app bundle without reinstalling modules
 ```
 
 Note that before using Yackage, the target app must have `fetch-yode` listed
