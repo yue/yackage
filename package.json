@@ -17,13 +17,13 @@
   "dependencies": {
     "asar": "3.0.x",
     "await-spawn": "4.0.2",
-    "commander": "2.15.0",
-    "fs-extra": "5.0.0",
+    "commander": "8.3.0",
+    "fs-extra": "10.0.0",
     "glob": "7.1.2",
-    "license-checker": "25.0.1",
-    "rcedit": "1.0.0",
-    "tar": "6.0.1",
+    "license-checker-rseidelsohn": "2.2.0",
+    "rcedit": "3.0.1",
+    "tar": "6.1.11",
     "uglify-js": "3.14.5",
-    "yazl": "2.4.3"
+    "yazl": "2.5.1"
   }
 }

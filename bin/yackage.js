@@ -12,18 +12,14 @@ const {getLatestYodeVersion} = require('../lib/util.js')
 
 async function parseOpts() {
   const opts = {
-    platform: process.env.npm_config_platform ? process.env.npm_config_platform
-                                              : process.platform,
-    arch: process.env.npm_config_arch ? process.env.npm_config_arch
-                                      : process.arch,
+    platform: process.env.npm_config_platform || process.platform,
+    arch: process.env.npm_config_arch || process.arch,
     appDir: process.cwd(),
-    minify: true,
     unpack: '*.node',
+    minify: true,
     extraInfoPlist: '',
   }
-  Object.assign(opts, program)
-  if (!opts.cacheDir)
-    opts.cacheDir = path.join(opts.appDir, 'yode')
+  Object.assign(opts, program.opts())
   opts.appDir = path.resolve(opts.appDir)
   return opts
 }
@@ -42,24 +38,27 @@ async function dist(outputDir) {
 }
 
 program.version('v' + require('../package.json').version)
-       .description('Package Node.js project with Yode')
-       .option('--platform <platform>', 'Target platform')
-       .option('--arch <arch>', 'Target arch')
-       .option('--app-dir <dir>', 'Path to the app')
-       .option('--unpack <pattern>', 'Passed to asar utility')
+       .description('Package Node.js project into app bundle with Yode')
+       .option('--platform <platform>',
+               'Target platform (default: $npm_config_platform || process.platform)')
+       .option('--arch <arch>',
+               'Target arch (default: $npm_config_arch || process.arch)')
+       .option('--app-dir <dir>',
+               'Path to the source code dir of app (default: current working dir)')
+       .option('--unpack <pattern>',
+               'Files to ignore when generating asar package (default: *.node)')
+       .option('--no-minify',
+               'Do not minify the JavaScript source code')
+       .option('--extra-info-plist',
+               'The extra string to insert into the Info.plist')
 
 program.command('build <outputDir>')
-       .description('Build exetutable file from app')
+       .description('Build app bundle')
        .action(build)
 
 program.command('dist <outputDir>')
-       .description('Build and generate distribution')
+       .description('Build app bundle and generate app distribution')
        .action(dist)
-
-program.command('*')
-       .action((cmd) => {
-         console.error(`yackage: ${cmd} is not a command.`)
-       })
 
 program.parse(process.argv)
 
