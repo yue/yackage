@@ -19,9 +19,11 @@
     "await-spawn": "4.0.2",
     "commander": "8.3.0",
     "fs-extra": "10.0.0",
+    "fullname": "4.0.1",
     "glob": "7.1.2",
     "license-checker-rseidelsohn": "2.2.0",
     "rcedit": "3.0.1",
+    "sort-package-json": "1.53.1",
     "tar": "6.1.11",
     "uglify-js": "3.14.5",
     "yazl": "2.5.1"

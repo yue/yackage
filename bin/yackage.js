@@ -5,8 +5,9 @@ const program = require('commander')
 
 const {spawn} = require('child_process')
 const {packageApp, packageCleanApp} = require('../lib/main')
+const {initProject} = require('../lib/init')
 const {createZip} = require('../lib/dist')
-const {getLatestYodeVersion} = require('../lib/util.js')
+const {getLatestYodeVersion} = require('../lib/util')
 
 async function parseOpts() {
   const opts = {
@@ -20,6 +21,10 @@ async function parseOpts() {
   Object.assign(opts, program.opts())
   opts.appDir = path.resolve(opts.appDir)
   return opts
+}
+
+async function init() {
+  await initProject('basic', process.cwd())
 }
 
 async function build(outputDir) {
@@ -53,6 +58,10 @@ program.version('v' + require('../package.json').version)
                'Do not minify the JavaScript source code')
        .option('--extra-info-plist',
                'The extra string to insert into the Info.plist')
+
+program.command('init')
+       .description('Create an empty project under current directory')
+       .action(init)
 
 program.command('build <outputDir>')
        .description('Build app bundle')

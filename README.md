@@ -30,8 +30,9 @@ Options:
 
 Commands:
 
-  build <outputDir>      Build app bundle
-  dist <outputDir>       Build app bundle and generate app distribution
+  init                     Create an empty project under current directory
+  build <outputDir>        Build app bundle
+  dist <outputDir>         Build app bundle and generate app distribution
   dirty-build <outputDir>  Build app bundle without reinstalling modules
 ```
 

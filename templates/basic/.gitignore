@@ -1,0 +1,8 @@
+*.swp
+*.zip
+
+yarn.lock
+package-lock.json
+npm-debug.log
+/node_modules/
+/out/
