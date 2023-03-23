@@ -54,6 +54,8 @@ program.version('v' + require('../package.json').version)
                'Path to the source code dir of app (default: current working dir)')
        .option('--unpack <pattern>',
                'Files to ignore when generating asar package (default: *.node)')
+       .option('--unpack-dir <pattern>',
+               'Dirs to ignore when generating asar package')
        .option('--no-minify',
                'Do not minify the JavaScript source code')
        .option('--extra-info-plist',

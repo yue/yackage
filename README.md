@@ -51,6 +51,11 @@ Configure your project by adding following fields to `package.json`:
     "copyright": "Copyright © 2020 Company",
     "minify": true,
     "unpack": "+(*.node|*.png)",
+    "unpackDir": "{assets,build}",
+    "icons": {
+      "win": "assets/icon.ico",
+      "mac": "assets/icon.icns"
+    },
     "extraInfoPlist": "<key>LSUIElement</key><true/>"
   }
 }
