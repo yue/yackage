@@ -52,6 +52,7 @@ Configure your project by adding following fields to `package.json`:
     "minify": true,
     "unpack": "+(*.node|*.png)",
     "unpackDir": "{assets,build}",
+    "ignore": [ "assets/*" ],
     "icons": {
       "win": "assets/icon.ico",
       "mac": "assets/icon.icns"
@@ -60,9 +61,6 @@ Configure your project by adding following fields to `package.json`:
   }
 }
 ```
-
-Icons should put under the `build/` directory with filenames of `icon.icns`
-and `icon.ico`.
 
 ## Examples
 
