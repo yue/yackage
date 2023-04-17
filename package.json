@@ -1,6 +1,6 @@
 {
   "name": "yackage",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "main": "./lib/main.js",
   "description": "Build native desktop apps with Node.js",
   "bin": {
