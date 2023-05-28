@@ -82,7 +82,11 @@ program.parse(process.argv)
 if (process.argv.length == 2)
   program.outputHelp()
 
-process.on('unhandledRejection', r => {
-  console.error(r)
+process.on('unhandledRejection', error => {
+  console.error(error.stack)
+  if (error.stdout)
+    console.error(error.stdout.toString())
+  if (error.stderr)
+    console.error(error.stderr.toString())
   process.exit(1)
 })
