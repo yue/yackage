@@ -27,6 +27,9 @@ Options:
                          *.node)
   --no-minify            Do not minify the JavaScript source code
   --extra-info-plist     The extra string to insert into the Info.plist
+  --identity               The identity used for signing app bundle on macOS
+  --entitlements           Path to the entitlements file when signing app bundle on
+                           macOS
 
 Commands:
 
