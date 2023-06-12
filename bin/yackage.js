@@ -60,9 +60,9 @@ program.version('v' + require('../package.json').version)
                'Do not minify the JavaScript source code')
        .option('--extra-info-plist',
                'The extra string to insert into the Info.plist')
-       .option('--identity',
+       .option('--identity <identity>',
                'The identity used for signing app bundle on macOS')
-       .option('--entitlements',
+       .option('--entitlements <entitlements>',
                'Path to the entitlements file when signing app bundle on macOS')
 
 program.command('init')

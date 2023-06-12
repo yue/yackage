@@ -18,18 +18,20 @@ Usage: yackage [options] [command]
 
 Options:
 
-  --platform <platform>  Target platform (default: $npm_config_platform ||
-                         process.platform)
-  --arch <arch>          Target arch (default: $npm_config_arch || process.arch)
-  --app-dir <dir>        Path to the source code dir of app (default: current
-                         working dir)
-  --unpack <pattern>     Files to ignore when generating asar package (default:
-                         *.node)
-  --no-minify            Do not minify the JavaScript source code
-  --extra-info-plist     The extra string to insert into the Info.plist
-  --identity               The identity used for signing app bundle on macOS
-  --entitlements           Path to the entitlements file when signing app bundle on
-                           macOS
+  --platform <platform>          Target platform (default: $npm_config_platform ||
+                                 process.platform)
+  --arch <arch>                  Target arch (default: $npm_config_arch ||
+                                 process.arch)
+  --app-dir <dir>                Path to the source code dir of app (default:
+                                 current working dir)
+  --unpack <pattern>             Files to ignore when generating asar package
+                                 (default: *.node)
+  --unpack-dir <pattern>         Dirs to ignore when generating asar package
+  --no-minify                    Do not minify the JavaScript source code
+  --extra-info-plist             The extra string to insert into the Info.plist
+  --identity <identity>          The identity used for signing app bundle on macOS
+  --entitlements <entitlements>  Path to the entitlements file when signing app
+                                 bundle on macOS
 
 Commands:
 
