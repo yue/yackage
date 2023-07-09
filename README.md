@@ -50,6 +50,7 @@ Configure your project by adding following fields to `package.json`:
 
 ```json
 {
+  "main": "app.js",
   "build": {
     "appId": "com.app.id"
     "productName": "App"
